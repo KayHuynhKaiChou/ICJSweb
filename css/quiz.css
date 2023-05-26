@@ -1,0 +1,183 @@
+*{
+    padding: 0;
+    margin: 0;
+    font-size: 22px;
+    box-sizing: border-box;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    background-color: rgb(206, 205, 205);
+}
+
+.total-swing{
+    display: flex;
+    max-width: 1060px;
+}
+.main-swing{
+    background-color: #ffffff;
+    width: 70%;
+}
+.big-title{
+    height: 450px;
+    background-image: url(https://nhatbanchotoinhe.com/wp-content/uploads/2021/09/minna-no-nihongo-1-2-ban-cu-04.jpg);
+    background-size: 100%;
+    background-repeat: no-repeat;
+}
+
+.big-title p{
+    font-size: 40px;
+    padding-top: 150px;
+    padding-left: 20px;
+}
+
+.list-question{
+    display: flex;
+    flex-wrap: wrap;
+}
+.info-question{
+    margin-left: 30px;
+    margin-bottom: 50px;
+    width: 100%;
+}
+.question{
+    display: flex;
+    margin-bottom: 15px;
+}
+.que-number{
+    padding: 10px;
+    background-color: #123b57;
+    color: #ffffff;
+}
+
+.que-title{
+    flex: 1;
+    padding: 10px;
+
+}
+
+.answer{
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 87px;
+}
+.choice{
+    width: 40%;
+    padding: 15px;
+    background-color: #fbe5cf;
+    border-radius: 20px;
+    word-wrap: break-word;
+    line-height: 30px;
+}
+
+.choice:hover{
+    background-color: rgb(250, 170, 23);
+    cursor: pointer;
+}
+
+.choice:nth-child(even){
+    margin-left: 80px;
+}
+
+.choice:nth-child(1),
+.choice:nth-child(2){
+    margin-bottom: 30px;
+}
+
+.submit-quiz{
+    display: flex;    
+    justify-content: center;
+    margin-bottom: 30px;
+}
+
+button{
+    padding: 10px 80px;
+    font-size: 20px;
+    background-color: #1793f6;
+    color: #ffffff;
+    border: none;
+    border-radius: 15px;
+
+}
+
+button:hover{
+    background-color: rgb(33, 231, 231);
+    cursor: pointer;
+}
+
+.not-main{
+    width: 30%;
+    background-color: #e5e5e5;
+}
+
+.not-main .detail-quiz{
+    margin: 35px;
+    padding: 15px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    border-bottom: 1px solid gainsboro;
+}
+
+.not-main .detail-quiz .time-quiz,
+.not-main .detail-quiz .title-quiz,
+.not-main .detail-quiz .number-question-quiz{
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.title,.minutes,.number-que{
+    margin-left: 15px;
+}
+
+hr{
+    margin: 1rem 35px;
+    color: inherit;
+}
+
+.question-fast{
+    margin: 35px;
+    background-color: #ffffff;
+    border-radius: 15px;
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+}
+
+.head-fast {
+    padding: 10px 0;
+    background-color: #123b57;
+    color: #ffffff;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+}
+
+.body-fast{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 15px;
+}
+
+.head-fast , .choice-fast{
+    text-align: center;
+}
+
+.choice-fast{
+    display: block;
+    text-decoration: none;
+    color: black;
+    width: 35px;
+    height: 35px;
+    background-color: rgb(227, 225, 225);
+    border: 1px solid;
+    border-radius: 5px;
+    font-size: 16px;
+    margin: 4px;
+    line-height: 2;
+}
+
+.choice-fast:hover{
+    background-color: #f6f0f0;
+    cursor: pointer;
+}

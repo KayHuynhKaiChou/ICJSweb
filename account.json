@@ -1,0 +1,16 @@
+{
+    "accounts":[
+        {
+            "username":"khoikhoa",
+            "password":"se17b01",
+            "email":"khoiHGQE170047@fpt.edu.vn",
+            "role":2
+        },
+        {
+            "username":"khoibang",
+            "password":"1832003",
+            "email":"huynkhoi@gmail.com",
+            "role":1
+        }
+    ]
+}
