@@ -117,7 +117,6 @@ function checkClientKey(data) {
 sumit.onclick = () => {
     getQues(checkClientKey)
     sumit.parentElement.removeChild(sumit);
-
 }
 
 function noitce(score, ques) {
