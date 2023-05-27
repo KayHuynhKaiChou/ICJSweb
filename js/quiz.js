@@ -1,17 +1,127 @@
-var minute = document.querySelector('.time-quiz .minutes');
-var second = document.querySelector('.time-quiz .seconds');
+var title = document.querySelector('.title');
+var testTime = document.querySelector('.time');
+var numberQue = document.querySelector('.number-que');
 
-setInterval(()=>{
-    if(second.innerText == 00){
-        second.innerHTML = 59;
-        if(minute.innerHTML.replace(':','') <=10 ){
-            minute.innerHTML = '0' + (minute.innerHTML.replace(':','') - 1) + ':';
+var listQues = document.querySelector('.list-question');
+var ques = listQues.querySelector('.info-question');
+
+var choiceMenu = document.querySelector('.choice-menu');
+
+var quesApi = '/assets/data/test.json';
+
+function start() {
+    getQues(renderQues)
+}
+
+start();
+
+function getQues(callBack) {
+    fetch(quesApi)
+        .then(resp => resp.json())
+        .then(callBack)
+        .catch(() => {
+            clearInterval(x);
+            noitce(clientScore);
+            console.log(clientAns);
+        })
+}
+
+function renderQues(data) {
+    var list = data.content;
+    setNoitice(data.title, list.length);
+    list.forEach((element, index) => {
+        generateQues(index + 1, element);
+        generateMenu(index + 1);
+    });
+    listQues.removeChild(ques)
+    choiceMenu.removeChild(choiceMenu.firstElementChild);
+}
+
+function generateQues(index, data) {
+    var newQue = ques.cloneNode(true);
+    var quesContent = newQue.querySelector('.question');
+    var quesNumber = quesContent.querySelector('.que-number');
+    var quesTitle = quesContent.querySelector('.que-title');
+
+    quesContent.id = 'question-' + index;
+    quesNumber.innerHTML = '第' + index;
+    quesTitle.innerHTML = data.question;
+
+    generateAns(data.answer, newQue, index);
+    listQues.append(newQue);
+}
+
+function generateAns(ansData, quesContain, index) {
+    var ansContain = quesContain.querySelector('.answer');
+    var ansBtn = ansContain.querySelector('.button');
+    var ansContent = ansBtn.querySelector('label');
+    var ansValue = ansBtn.querySelector('input');
+
+    ansData.forEach((element) => {
+        ansContent.innerHTML = element;
+        ansValue.name = 'question' + index;
+        ansValue.value = element;
+        var generateBtn = ansBtn.cloneNode(true);
+        generateBtn.onclick = () => changeMenuItem(generateBtn.parentElement);
+        ansContain.appendChild(generateBtn);
+    });
+    ansContain.removeChild(ansBtn);
+}
+
+function changeMenuItem(element) {
+    var id = element.parentElement.firstElementChild.id
+    var a = document.querySelector("a[href='#" + id + "']");
+    a.setAttribute('style', 'color: #ffffff;background: #123b57;')
+}
+
+function generateMenu(data) {
+    var newMove = choiceMenu.firstElementChild.cloneNode(true);
+    newMove.href = '#question-' + data;
+    newMove.innerHTML = data;
+    choiceMenu.appendChild(newMove);
+}
+
+function setNoitice(testTitle, time) {
+    title.innerHTML = testTitle;
+    numberQue.innerHTML = time;
+    countTime.setMinutes(countTime.getMinutes() + time);
+}
+
+
+
+var sumit = document.getElementById('submit-quiz');
+var main = document.querySelector('.main-swing');
+
+
+let clientAns = [];
+let clientWrongAns = [];
+let clientScore = 0;
+
+function checkClientKey(data) {
+    var list = data.content;
+    clientAns = list.map((element, index) => {
+        var a = document.querySelector(`input[name="question${index + 1}"]:checked`);
+        if (a) {
+            if (element.key == a.value) {
+                clientScore++
+            } else {
+                clientWrongAns.concat(element.id);
+            }
         }
-    }else{
-        if(second.innerText <= 10){
-            second.innerHTML = '0' + (second.innerText - 1);
-        }else{
-            second.innerHTML -= 1;
-        }
-    }
-},1000)
+        return a == null ? "nocheck" : a.value;
+    });
+    clearInterval(x);
+    noitce(clientScore, list.length);
+}
+
+sumit.onclick = () => {
+    getQues(checkClientKey)
+    sumit.parentElement.removeChild(sumit);
+
+}
+
+function noitce(score, ques) {
+    alert(`Congratulations. You are correct ${score}/${ques}`);
+}
+
+
