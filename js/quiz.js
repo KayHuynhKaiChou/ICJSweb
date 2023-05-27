@@ -7,7 +7,7 @@ var ques = listQues.querySelector('.info-question');
 
 var choiceMenu = document.querySelector('.choice-menu');
 
-var quesApi = '/assets/data/test.json';
+var quesApi = '/data/test.json';
 
 function start() {
     getQues(renderQues)
