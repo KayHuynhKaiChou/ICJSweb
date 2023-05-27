@@ -30,14 +30,14 @@ function renderQues(data) {
     var list = data.content;
     setNoitice(data.title, list.length);
     list.forEach((element, index) => {
-        generateQues(index + 1, element);
-        generateMenu(index + 1);
+        getQues(index + 1, element);
+        getMenu(index + 1);
     });
     listQues.removeChild(ques)
     choiceMenu.removeChild(choiceMenu.firstElementChild);
 }
 
-function generateQues(index, data) {
+function getQues(index, data) {
     var newQue = ques.cloneNode(true);
     var quesContent = newQue.querySelector('.question');
     var quesNumber = quesContent.querySelector('.que-number');
@@ -47,11 +47,11 @@ function generateQues(index, data) {
     quesNumber.innerHTML = '第' + index;
     quesTitle.innerHTML = data.question;
 
-    generateAns(data.answer, newQue, index);
+    getAns(data.answer, newQue, index);
     listQues.append(newQue);
 }
 
-function generateAns(ansData, quesContain, index) {
+function getAns(ansData, quesContain, index) {
     var ansContain = quesContain.querySelector('.answer');
     var ansBtn = ansContain.querySelector('.button');
     var ansContent = ansBtn.querySelector('label');
@@ -74,7 +74,7 @@ function changeMenuItem(element) {
     a.setAttribute('style', 'color: #ffffff;background: #123b57;')
 }
 
-function generateMenu(data) {
+function getMenu(data) {
     var newMove = choiceMenu.firstElementChild.cloneNode(true);
     newMove.href = '#question-' + data;
     newMove.innerHTML = data;
@@ -87,11 +87,8 @@ function setNoitice(testTitle, time) {
     countTime.setMinutes(countTime.getMinutes() + time);
 }
 
-
-
 var sumit = document.getElementById('submit-quiz');
 var main = document.querySelector('.main-swing');
-
 
 let clientAns = [];
 let clientWrongAns = [];
@@ -122,5 +119,3 @@ sumit.onclick = () => {
 function noitce(score, ques) {
     alert(`Congratulations. You are correct ${score}/${ques}`);
 }
-
-
