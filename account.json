@@ -4,13 +4,28 @@
             "username":"khoikhoa",
             "password":"se17b01",
             "email":"khoiHGQE170047@fpt.edu.vn",
-            "role":2
+            "job":"Student",
+            "avatar":"img/defaultImage.png",
+            "role":2,
+            "list_WrongQ":[],
+            "numberQuiz": 5,
+            "bio":""
         },
         {
             "username":"khoibang",
             "password":"1832003",
             "email":"huynkhoi@gmail.com",
-            "role":1
+            "job":"Student",
+            "avatar":"img/defaultImage.png",
+            "role":1,
+            "list_WrongQ":[
+                {
+                    "titleQuiz":"test 1",
+                    "idQ":["Q3,Q5,Q10"]
+                }
+            ],
+            "numberQuiz": 5,
+            "bio":""
         }
     ]
 }
