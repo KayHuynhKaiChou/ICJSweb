@@ -382,9 +382,9 @@
 
   <!-- Template Javascript -->
   <script src="js/main.js"></script>
-  <script src="js/login.js"></script>
   <script src="js/formValidate.js"></script>
   <script src="js/handleAccountJSON.js"></script>
+  <script src="js/handleRegisterJSON.js"></script>
   <script>
     Validator({
         form: '#form-signin',
@@ -409,11 +409,11 @@
 
           Validator.isRequired('#password_confirmation', 'Vui lòng nhập trường này'),
           Validator.isConfirmed('#password_confirmation', function () {
-            return document.querySelector('#form-1 #password').value;
+            return document.querySelector('#form-signup #password').value;
           }, 'Password không trùng khớp')
         ],
-        onSubmit: function (data) {
-          console.log(data);
+        onSubmit: function (aSignUp) {
+          pushRegisterIntoJSON(aSignUp);
         }
       });
   </script>
