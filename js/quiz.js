@@ -7,15 +7,15 @@ var ques = listQues.querySelector('.info-question');
 
 var choiceMenu = document.querySelector('.choice-menu');
 
-var quesApi = '/data/test.json';
+var quesApi = '/data/quiz.json';
 
 function start() {
-    getQues(renderQues)
+    getData(renderQues)
 }
 
 start();
 
-function getQues(callBack) {
+function getData(callBack) {
     fetch(quesApi)
         .then(resp => resp.json())
         .then(callBack)
@@ -112,7 +112,7 @@ function checkClientKey(data) {
 }
 
 sumit.onclick = () => {
-    getQues(checkClientKey)
+    getData(checkClientKey)
     sumit.parentElement.removeChild(sumit);
 }
 

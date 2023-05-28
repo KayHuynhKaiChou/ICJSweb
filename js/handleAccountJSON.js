@@ -23,6 +23,7 @@ if(url.includes('?')){
             </ul>
         </div>
     `
+    
 
     var list_menuUser = document.querySelector('.sub-menu_profile');
     var logoUser = document.querySelector('.logo-user');
