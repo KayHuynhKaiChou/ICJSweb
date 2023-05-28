@@ -1,11 +1,8 @@
 {
-  "name": "myjson_server",
+  "name": "json_server",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "directories": {
-    "lib": "lib"
-  },
   "scripts": {
     "start": "json-server --watch account.json --port 3000",
     "test": "echo \"Error: no test specified\" && exit 1"

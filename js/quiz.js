@@ -8,13 +8,14 @@ var ques = listQues.querySelector('.info-question');
 var choiceMenu = document.querySelector('.choice-menu');
 
 var url = location.href;
-var id = url.split('=')[1];
+var id = (url.split('=')[1])[4];
+
 var accountApi = 'http://localhost:3000/accounts';
 var quesApi = '/data/quiz.json';
 var userProfile = JSON.parse(sessionStorage.getItem('accountSS'));
 
 console.log(userProfile);
-
+console.log(id);
 
 function start() {
     getData(renderQues)
@@ -29,8 +30,8 @@ function getData(callBack) {
 }
 
 function renderQues(data) {
-    var list = data.content;
-    setNoitice(data.title, list.length);
+    var list = data[id].content;
+    setNoitice(data[id].title, list.length);
     list.forEach((element, index) => {
         getQues(index + 1, element);
         getMenu(index + 1);
