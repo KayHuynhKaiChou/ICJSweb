@@ -127,10 +127,8 @@ function checkClientKey(data) {
             if (element.key == a.value) {
                 clientScore++
             } else {
-<<<<<<< HEAD
-=======
+
                 a.parentElement.querySelector('label').style.backgroundColor = 'red'
->>>>>>> 0d78f4744e48d656daa8533ef0a99ffa4d5d2145
                 clientWrongAns.push(element);
             }
             return a.value;
@@ -159,10 +157,8 @@ function saveWrongQue(wrongQue) {
                 currentQuiz.push(wrongQue)
             }else{
                 currentQuiz.push(wrongQue)
-<<<<<<< HEAD
-=======
 
->>>>>>> 0d78f4744e48d656daa8533ef0a99ffa4d5d2145
+
             }
         });
     }

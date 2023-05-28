@@ -22,11 +22,7 @@
       "role": 1,
       "list_WrongQ": [
         {
-<<<<<<< HEAD
-          "titleQuiz": "Test Vocabulary 3",
-=======
           "titleQuiz": {},
->>>>>>> 0d78f4744e48d656daa8533ef0a99ffa4d5d2145
           "idQ": [
             {
               "question": "あしたは(雨)ですか。",
@@ -36,11 +32,7 @@
                 "くもり",
                 "あめ",
                 "はれ"
-<<<<<<< HEAD
               ],
-=======
-              ],  
->>>>>>> 0d78f4744e48d656daa8533ef0a99ffa4d5d2145
               "key": "あめ"
             },
             {
@@ -153,6 +145,10 @@
         {
           "title": "Test Vocabulary 1",
           "score": 3
+        },
+        {
+          "title": "Test Vocabulary 2",
+          "score": 0
         }
       ],
       "bio": "hello mina"
@@ -168,6 +164,18 @@
       "completedQuiz": [],
       "bio": "The sooner the better",
       "id": 3
+    },
+    {
+      "username": "trandangkhoa",
+      "email": "KhoaTDQE170047@fpt.edu.vn",
+      "password": "12345678",
+      "job": "Student",
+      "avatar": "img/defaultImage.png",
+      "role": 1,
+      "list_WrongQ": [],
+      "numberQuiz": 0,
+      "bio": "",
+      "id": 4
     }
   ]
 }

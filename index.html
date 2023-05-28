@@ -415,11 +415,11 @@
 
           Validator.isRequired('#password_confirmation', 'Vui lòng nhập trường này'),
           Validator.isConfirmed('#password_confirmation', function () {
-            return document.querySelector('#form-1 #password').value;
+            return document.querySelector('#form-signup #password').value;
           }, 'Password không trùng khớp')
         ],
         onSubmit: function (data) {
-          console.log(data);
+          pushRegisterIntoJSON(data);
         }
       });
   </script>
