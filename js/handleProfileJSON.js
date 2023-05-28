@@ -48,14 +48,14 @@ function renderAccountToProfile(accountJson){
                 </div>
                 <div class="col-md-12">
                     <label class="labels">Number of completed quiz</label><a href="#">View</a>
-                    <input type="text" class="form-control" placeholder="" readonly value="${accountJson.numberQuiz}">
+                    <input type="text" id="complete-quiz" class="form-control" placeholder="" readonly value="${accountJson.numberQuiz}">
                 </div>
                 <div class="col-md-12">
                     <label class="labels">Bio</label>
                     <textarea id="bio" type="text" class="form-control" placeholder="Add a Bio" rows="4" cols="50"
                         value="">${accountJson.bio}</textarea>
                 </div>
-                <div class="col-md-12"><label class="labels">List Wrong question</label><a href="#">View</a></div>
+                <div class="col-md-12"><label class="labels">List Wrong question</label><a onclick="stopHiddenElement();">View</a></div>
             </div>
             <div class="mt-5 text-center">
                 <button class="btn btn-primary profile-button">Save Profile</button>
@@ -142,3 +142,45 @@ function handleUpdateProfile(){
 }
 
 handleUpdateProfile();
+
+//================================show incorrect question================================//
+
+function stopHiddenElement(){
+    var swingWrong = document.querySelector('.swing-wrongQe');
+    var cover = document.querySelector('.cover');
+    cover.style.display = 'block';
+    swingWrong.style.display = 'flex';
+    swingWrong.style.justifyContent = 'center';
+    swingWrong.style.alignItems = 'center';
+    swingWrong.style.overflow = 'scroll';
+}
+var accountData = JSON.parse(sessionStorage.getItem('accountSS'));
+
+showIncorrectQue()
+function showIncorrectQue(){
+    var listWrongQues = document.querySelector('.list-Wquestion');
+    accountData.list_WrongQ.forEach((ques)=>{
+        ques.idQ.forEach(wrong =>{
+            listWrongQues.innerHTML += `
+                <div class="question">
+                    <div class="titleQue">Question: ${wrong.question}</div>
+                    <div class="correct">Answer: ${wrong.key}</div>
+                </div>
+            `      
+        })
+    })
+}
+
+function showCompleteQuiz() {
+    var inputShow = document.querySelector('#complete-quiz');
+    inputShow.value = accountData.completedQuiz.length;
+}
+
+showCompleteQuiz()
+
+function closeSwing(){
+    var swingWrong = document.querySelector('.swing-wrongQe');
+    var cover = document.querySelector('.cover');
+    cover.style.display = 'none';
+    swingWrong.style.display = 'none';
+}

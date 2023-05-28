@@ -126,11 +126,11 @@ function checkClientKey(data) {
             if (element.key == a.value) {
                 clientScore++
             } else {
-                clientWrongAns.push(element.id);
+                clientWrongAns.push(element);
             }
             return a.value;
         } else {
-            clientWrongAns.push(element.id);
+            clientWrongAns.push(element);
             return "nocheck";
         }
     });
@@ -151,6 +151,8 @@ function saveWrongQue(wrongQue) {
         currentQuiz.forEach((element, index) => {
             if (element.title == wrongQue.title) {
                 currentQuiz.splice(index, index + 1)
+                currentQuiz.push(wrongQue)
+            }else{
                 currentQuiz.push(wrongQue)
             }
         });
