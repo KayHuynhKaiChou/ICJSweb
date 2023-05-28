@@ -2,8 +2,8 @@
     "title": "Bai test so 2",
     "content": [
         {
+            "id": "Q1",
             "question": "cau1",
-            "id": "1",
             "answer": [
                 "vai",
                 "BBB",
@@ -12,8 +12,8 @@
             ],
             "key": "vai"
         },{
+            "id": "Q2",
             "question": "cau2",
-            "id": "2",
             "answer": [
                 "vai",
                 "BBB",
@@ -22,8 +22,8 @@
             ],
             "key": "vai"
         },{
+            "id": "Q3",
             "question": "cau3",
-            "id": "3",
             "answer": [
                 "vai",
                 "BBB",
@@ -32,8 +32,8 @@
             ],
             "key": "BBB"
         },{
+            "id": "Q4",
             "question": "cau4",
-            "id": "4",
             "answer": [
                 "vai",
                 "BBB",

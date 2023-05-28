@@ -10,20 +10,15 @@ var choiceMenu = document.querySelector('.choice-menu');
 var quesApi = '/data/test.json';
 
 function start() {
-    getQues(renderQues)
+    getData(renderQues)
 }
 
 start();
 
-function getQues(callBack) {
+function getData(callBack) {
     fetch(quesApi)
         .then(resp => resp.json())
         .then(callBack)
-        .catch(() => {
-            clearInterval(x);
-            noitce(clientScore);
-            console.log(clientAns);
-        })
 }
 
 function renderQues(data) {
@@ -35,6 +30,19 @@ function renderQues(data) {
     });
     listQues.removeChild(ques)
     choiceMenu.removeChild(choiceMenu.firstElementChild);
+}
+
+function handleWrongQues(data, callBack) {
+    var options = {
+        method: 'POST',
+        header:{
+            'Content-Type':'application/json'
+        },
+        body: JSON.stringify(data)
+    }
+    fetch(accountApi, options)
+        .then(resp => resp.json())
+        .then(callBack)
 }
 
 function getQues(index, data) {
@@ -107,12 +115,12 @@ function checkClientKey(data) {
         }
         return a == null ? "nocheck" : a.value;
     });
-    clearInterval(x);
     noitce(clientScore, list.length);
 }
 
 sumit.onclick = () => {
-    getQues(checkClientKey)
+    getData(checkClientKey);
+    clearInterval(x);
     sumit.parentElement.removeChild(sumit);
 }
 
