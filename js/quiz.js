@@ -120,27 +120,20 @@ var wrongQuiz = {};
 function checkClientKey(data) {
     var list = data[quizID].content;
     var title = data[quizID].title;
-    // clientAns = list.map((element, index) => {
-    //     var a = document.querySelector(`input[name="question${index + 1}"]:checked`);
-    //     if (a) {
-    //         if (element.key == a.value) {
-    //             clientScore++
-    //         } else {
-    //             clientWrongAns.push(element.id);
-    //         }
-    //         return a.value;
-    //     } else {
-    //         clientWrongAns.push(element.id);
-    //         return "nocheck";
-    //     }
-    // });
-    list.forEach((element, index) => {
-        element.answer.forEach((ans, i) => {
-            if (element.key == input) {
-
+    clientAns = list.map((element, index) => {
+        var a = document.querySelector(`input[name="question${index + 1}"]:checked`);
+        if (a) {
+            if (element.key == a.value) {
+                clientScore++
+            } else {
+                clientWrongAns.push(element.id);
             }
-        })
-    })
+            return a.value;
+        } else {
+            clientWrongAns.push(element.id);
+            return "nocheck";
+        }
+    });
     wrongQuiz = {
         titleQuiz: title,
         idQ: clientWrongAns
