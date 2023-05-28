@@ -7,6 +7,8 @@ var ques = listQues.querySelector('.info-question');
 
 var choiceMenu = document.querySelector('.choice-menu');
 
+var url = location.href;
+var id = url.split('=')[1];
 var accountApi = 'http://localhost:3000/accounts';
 var quesApi = '/data/quiz.json';
 var userProfile = JSON.parse(sessionStorage.getItem('accountSS'));
