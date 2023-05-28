@@ -8,14 +8,14 @@ var ques = listQues.querySelector('.info-question');
 var choiceMenu = document.querySelector('.choice-menu');
 
 var url = location.href;
-var id = (url.split('=')[1])[4];
+var quizID = (url.split('=')[1])[4];
 
 var accountApi = 'http://localhost:3000/accounts';
 var quesApi = '/data/quiz.json';
 var userProfile = JSON.parse(sessionStorage.getItem('accountSS'));
 
 console.log(userProfile);
-console.log(id);
+console.log(quizID);
 
 function start() {
     getData(renderQues)
@@ -30,8 +30,8 @@ function getData(callBack) {
 }
 
 function renderQues(data) {
-    var list = data[id].content;
-    setNoitice(data[id].title, list.length);
+    var list = data[quizID].content;
+    setNoitice(data[quizID].title, list.length);
     list.forEach((element, index) => {
         getQues(index + 1, element);
         getMenu(index + 1);
@@ -43,8 +43,8 @@ function renderQues(data) {
 function handleWrongQues(data, callBack) {
     var options = {
         method: 'POST',
-        header:{
-            'Content-Type':'application/json'
+        header: {
+            'Content-Type': 'application/json'
         },
         body: JSON.stringify(data)
     }
@@ -63,21 +63,25 @@ function getQues(index, data) {
     quesNumber.innerHTML = '第' + index;
     quesTitle.innerHTML = data.question;
 
-    getAns(data.answer, newQue, index);
+    getAns(data, newQue, index);
     listQues.append(newQue);
 }
 
+var listRightQues = [];
 function getAns(ansData, quesContain, index) {
     var ansContain = quesContain.querySelector('.answer');
     var ansBtn = ansContain.querySelector('.button');
     var ansContent = ansBtn.querySelector('label');
     var ansValue = ansBtn.querySelector('input');
 
-    ansData.forEach((element) => {
+    ansData.answer.forEach((element) => {
         ansContent.innerHTML = element;
         ansValue.name = 'question' + index;
         ansValue.value = element;
         var generateBtn = ansBtn.cloneNode(true);
+        if (element == ansData.key) {
+            listRightQues.push(generateBtn.querySelector('label'))
+        }
         generateBtn.onclick = () => changeMenuItem(generateBtn.parentElement);
         ansContain.appendChild(generateBtn);
     });
@@ -104,33 +108,77 @@ function setNoitice(testTitle, time) {
 }
 
 var sumit = document.getElementById('submit-quiz');
+var back = document.getElementById('out-quiz');
 var main = document.querySelector('.main-swing');
+var input = document.querySelector('input');
 
 let clientAns = [];
 let clientWrongAns = [];
 let clientScore = 0;
+var wrongQuiz = {};
 
 function checkClientKey(data) {
-    var list = data.content;
-    clientAns = list.map((element, index) => {
-        var a = document.querySelector(`input[name="question${index + 1}"]:checked`);
-        if (a) {
-            if (element.key == a.value) {
-                clientScore++
-            } else {
-                clientWrongAns.concat(element.id);
+    var list = data[quizID].content;
+    var title = data[quizID].title;
+    // clientAns = list.map((element, index) => {
+    //     var a = document.querySelector(`input[name="question${index + 1}"]:checked`);
+    //     if (a) {
+    //         if (element.key == a.value) {
+    //             clientScore++
+    //         } else {
+    //             clientWrongAns.push(element.id);
+    //         }
+    //         return a.value;
+    //     } else {
+    //         clientWrongAns.push(element.id);
+    //         return "nocheck";
+    //     }
+    // });
+    list.forEach((element, index) => {
+        element.answer.forEach((ans, i) => {
+            if (element.key == input) {
+
             }
-        }
-        return a == null ? "nocheck" : a.value;
-    });
+        })
+    })
+    wrongQuiz = {
+        titleQuiz: title,
+        idQ: clientWrongAns
+    }
+
     noitce(clientScore, list.length);
 }
 
-sumit.onclick = () => {
-    getQues(checkClientKey)
-    sumit.parentElement.removeChild(sumit);
+function saveWrongQue(wrongQue) {
+    var firstProfile = getAccountfromJSON();
+    var currentQuiz = firstProfile.list_WrongQ;
+    if (currentQuiz.length == 0) {
+        currentQuiz.push(wrongQue)
+    } else {
+        currentQuiz.forEach((element, index) => {
+            if (element.title == wrongQue.title) {
+                currentQuiz.splice(index, index + 1)
+                currentQuiz.push(wrongQue)
+            }
+        });
+    }
+    updateProfile(firstProfile);
 }
 
+
+sumit.onclick = () => {
+    getData(checkClientKey)
+    listRightQues.forEach((element) => {
+        element.style.backgroundColor = 'green';
+        element.style.color = 'white';
+        element.style.borderRadius = '20px';
+    })
+    sumit.parentElement.removeChild(sumit);
+}
+back.onclick = () => {
+    saveWrongQue(wrongQuiz);
+    window.location = `/trac-nghiem.html?username=${userProfile.username}`;
+}
 function noitce(score, ques) {
     alert(`Congratulations. You are correct ${score}/${ques}`);
 }

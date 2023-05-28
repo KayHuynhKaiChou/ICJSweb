@@ -98,7 +98,7 @@ function choiceImageForm(){
     }
 }
 
-function updateProfile(updatedProfile,e){
+function updateProfile(updatedProfile){
     sessionStorage.setItem("accountSS",JSON.stringify(updatedProfile));
     alert('Update Your Profile successfully')
     var options = {
@@ -109,9 +109,7 @@ function updateProfile(updatedProfile,e){
     
     fetch(accountsAPI+'/'+updatedProfile.id,options)
         .then(function(response){
-            if(response.ok){
-                e.preventDefault();
-            }
+            response.json()
         })
 }
 
@@ -136,7 +134,7 @@ function handleUpdateProfile(){
             firstProfile.bio = bio.value;
             firstProfile.avatar = (urlImage == '')?firstProfile.avatar:urlImage;
             console.log('ssssssssss')
-            updateProfile(firstProfile,e);
+            updateProfile(firstProfile);
         }else{
             alert('email is invalid!')
         }

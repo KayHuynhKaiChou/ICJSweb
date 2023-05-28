@@ -22,9 +22,17 @@
       "role": 1,
       "list_WrongQ": [
         {
-          "titleQuiz": "test 1",
+          "titleQuiz": "Test Vocabulary 1",
           "idQ": [
-            "Q3,Q5,Q10"
+            "1",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9",
+            "10"
           ]
         }
       ],
