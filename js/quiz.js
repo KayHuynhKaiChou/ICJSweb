@@ -114,18 +114,23 @@ var input = document.querySelector('input');
 
 let clientAns = [];
 let clientWrongAns = [];
-let clientScore = 0;
+var clientScore = 0;
 var wrongQuiz = {};
+var titleName = '';
 
 function checkClientKey(data) {
     var list = data[quizID].content;
-    var title = data[quizID].title;
+    titleName = data[quizID].title;
     clientAns = list.map((element, index) => {
         var a = document.querySelector(`input[name="question${index + 1}"]:checked`);
         if (a) {
             if (element.key == a.value) {
                 clientScore++
             } else {
+<<<<<<< HEAD
+=======
+                a.parentElement.querySelector('label').style.backgroundColor = 'red'
+>>>>>>> 0d78f4744e48d656daa8533ef0a99ffa4d5d2145
                 clientWrongAns.push(element);
             }
             return a.value;
@@ -154,9 +159,24 @@ function saveWrongQue(wrongQue) {
                 currentQuiz.push(wrongQue)
             }else{
                 currentQuiz.push(wrongQue)
+<<<<<<< HEAD
+=======
+
+>>>>>>> 0d78f4744e48d656daa8533ef0a99ffa4d5d2145
             }
         });
     }
+    updateProfile(firstProfile);
+}
+
+function saveScore() {
+    var quiz = {
+        title: titleName,
+        score: clientScore
+    }
+    var firstProfile = getAccountfromJSON();
+    var compleQuiz = firstProfile.completedQuiz;
+    compleQuiz.push(quiz)
     updateProfile(firstProfile);
 }
 
@@ -172,6 +192,7 @@ sumit.onclick = () => {
 }
 back.onclick = () => {
     saveWrongQue(wrongQuiz);
+    saveScore();
     window.location = `/trac-nghiem.html?username=${userProfile.username}`;
 }
 function noitce(score, ques) {
