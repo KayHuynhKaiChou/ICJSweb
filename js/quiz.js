@@ -7,7 +7,12 @@ var ques = listQues.querySelector('.info-question');
 
 var choiceMenu = document.querySelector('.choice-menu');
 
-var quesApi = '/data/test.json';
+var accountApi = 'http://localhost:3000/accounts';
+var quesApi = '/data/quiz.json';
+var userProfile = JSON.parse(sessionStorage.getItem('accountSS'));
+
+console.log(userProfile);
+
 
 function start() {
     getData(renderQues)
@@ -119,8 +124,7 @@ function checkClientKey(data) {
 }
 
 sumit.onclick = () => {
-    getData(checkClientKey);
-    clearInterval(x);
+    getQues(checkClientKey)
     sumit.parentElement.removeChild(sumit);
 }
 

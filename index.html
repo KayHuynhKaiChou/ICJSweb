@@ -387,9 +387,9 @@
 
   <!-- Template Javascript -->
   <script src="js/main.js"></script>
-  <script src="js/login.js"></script>
   <script src="js/formValidate.js"></script>
   <script src="js/handleAccountJSON.js"></script>
+  <script src="js/handleRegisterJSON.js"></script>
   <script>
     Validator({
       form: '#form-signin',
@@ -412,15 +412,15 @@
         Validator.isRequired('#password', 'Vui lòng nhập trường này'),
         Validator.isPassword('#password', 6, 'Length of Password must be at least 6 character'),
 
-        Validator.isRequired('#password_confirmation', 'Vui lòng nhập trường này'),
-        Validator.isConfirmed('#password_confirmation', function () {
-          return document.querySelector('#form-1 #password').value;
-        }, 'Password không trùng khớp')
-      ],
-      onSubmit: function (data) {
-        console.log(data);
-      }
-    });
+          Validator.isRequired('#password_confirmation', 'Vui lòng nhập trường này'),
+          Validator.isConfirmed('#password_confirmation', function () {
+            return document.querySelector('#form-1 #password').value;
+          }, 'Password không trùng khớp')
+        ],
+        onSubmit: function (data) {
+          console.log(data);
+        }
+      });
   </script>
 </body>
 

@@ -104,7 +104,7 @@ Validator.isPassword = (selector,min,messageError) =>{
     return {
         selector : selector,
         checkValid : (valueInput) => {
-            return valueInput>=min ? undefined : messageError
+            return valueInput.length >=min ? undefined : messageError
         } 
     }
 }
@@ -113,7 +113,7 @@ Validator.isConfirmed = (selector,passwordAgain,messageError) =>{
     return {
         selector : selector,
         checkValid : (valueInput) => {
-            return valueInput === passwordAgain ? undefined : messageError
+            return valueInput == passwordAgain() ? undefined : messageError
         } 
     }
 }
