@@ -21,13 +21,13 @@ function renderMenu(data) {
 
 function getTestMenu(quesData) {
     var menuQuesBlock = document.querySelector('.all-quiz');
-    var htmls = quesData.map((quiz) => {
+    var htmls = quesData.map((quiz,index) => {
         return `<div class="quiz">
         <div class="quiz-top">
-          <a class="title-top" href="">
+          <a class="title-top" >
             <h2 class="title-content">${quiz.title}</h2>
           </a>
-          <a class="start">start quiz</a>
+          <a class="start" href="quizJapan.html?quiz=test${index}" >start quiz</a>
 
         </div>
         <div class="quiz-info">
